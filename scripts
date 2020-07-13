@@ -1,0 +1,22 @@
+// ==UserScript==
+// @name         New Userscript
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        http://127.0.0.1:9091
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+new MutationObserver((mutations, observer) => {
+  const el = document.getElementById("demo2");
+  if (el != null) {
+    observer.disconnect()
+    new MutationObserver((mutations, observer) => {
+      debugger
+    }).observe(el, {childList: true, subtree: true,attributes: true})
+  }
+}).observe(document, {childList: true, subtree: true,attributes: true})
+})();
